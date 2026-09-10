@@ -1,0 +1,21 @@
+# ── Frontend (Node / Tailwind) ──────────────────────────────────────────
+node_modules/
+npm-debug.log*
+
+# ── Backend (Python / Django) ───────────────────────────────────────────
+backend/.venv/
+backend/venv/
+backend/__pycache__/
+backend/**/__pycache__/
+backend/**/*.pyc
+backend/db.sqlite3
+backend/staticfiles/
+
+# ── Variables d'environnement (ne jamais versionner) ────────────────────
+.env
+backend/.env
+
+# ── Divers ───────────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+*.log

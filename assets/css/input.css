@@ -1,0 +1,164 @@
+@import "tailwindcss";
+
+/* ==========================================================================
+   NDIMB S.A — Design tokens
+   Palette dérivée des couleurs réelles du logo (bleu, or, vert feuille).
+   ========================================================================== */
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-heading: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+
+  /* Bleu — Infrastructure / identité principale */
+  --color-primary-50: #EBF2FF;
+  --color-primary-100: #D6E5FF;
+  --color-primary-200: #A8C7FF;
+  --color-primary-300: #6B9FFF;
+  --color-primary-400: #337BFF;
+  --color-primary-500: #0F5FE0;
+  --color-primary-600: #0142BA;
+  --color-primary-700: #002F87;
+  --color-primary-800: #001B4D;
+  --color-primary-900: #081226;
+  --color-primary-950: #04070F;
+
+  /* Or — Énergie / BTP / Transport */
+  --color-gold-50: #FFF8EB;
+  --color-gold-100: #FFF0D6;
+  --color-gold-200: #FFE0A8;
+  --color-gold-300: #FFCA6B;
+  --color-gold-400: #FFB633;
+  --color-gold-500: #F69F02;
+  --color-gold-600: #CF8500;
+  --color-gold-700: #A16800;
+  --color-gold-800: #734A00;
+  --color-gold-900: #4B3000;
+
+  /* Vert — Agroalimentaire / durabilité */
+  --color-leaf-50: #EDFCED;
+  --color-leaf-100: #DCFADC;
+  --color-leaf-200: #B4F3B4;
+  --color-leaf-300: #7FEB7F;
+  --color-leaf-400: #4EE44E;
+  --color-leaf-500: #198D19;
+  --color-leaf-600: #116D11;
+  --color-leaf-700: #0B450B;
+  --color-leaf-800: #0A3A0A;
+  --color-leaf-900: #072B07;
+
+  --shadow-glow-gold: 0 0 0 1px rgba(246,159,2,0.15), 0 20px 45px -15px rgba(246,159,2,0.35);
+  --shadow-glow-primary: 0 20px 45px -15px rgba(1,66,186,0.45);
+
+  --animate-blob: blob 16s ease-in-out infinite;
+  --animate-marquee: marquee 32s linear infinite;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply font-sans text-slate-700 antialiased;
+    background-color: #fff;
+  }
+  h1, h2, h3, h4, h5, .font-heading {
+    @apply font-heading;
+  }
+  section[id] {
+    scroll-margin-top: 5.5rem;
+  }
+  ::selection {
+    background-color: var(--color-gold-400);
+    color: var(--color-primary-900);
+  }
+}
+
+@layer components {
+  .container-ndimb {
+    @apply mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-10;
+  }
+
+  .btn-gold {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold tracking-wide transition-all duration-300 ease-out bg-gold-500 text-primary-950 shadow-[var(--shadow-glow-gold)] hover:bg-gold-400 hover:-translate-y-0.5 active:translate-y-0;
+  }
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold tracking-wide transition-all duration-300 ease-out border border-white/30 text-white hover:border-white hover:bg-white/10 hover:-translate-y-0.5 active:translate-y-0;
+  }
+  .btn-outline-dark {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold tracking-wide transition-all duration-300 ease-out border border-primary-900/15 text-primary-900 hover:border-primary-900/40 hover:bg-primary-900/5 hover:-translate-y-0.5 active:translate-y-0;
+  }
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold tracking-wide transition-all duration-300 ease-out bg-primary-600 text-white shadow-[var(--shadow-glow-primary)] hover:bg-primary-500 hover:-translate-y-0.5 active:translate-y-0;
+  }
+
+  .eyebrow {
+    @apply mb-4 inline-flex items-center gap-2 rounded-full bg-gold-500/10 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.18em] text-gold-600;
+  }
+  .eyebrow-light {
+    @apply mb-4 inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.18em] text-gold-300 ring-1 ring-inset ring-white/15;
+  }
+
+  .card-surface {
+    @apply rounded-3xl border border-slate-200/70 bg-white shadow-sm shadow-slate-900/5;
+  }
+
+  .link-underline {
+    @apply relative after:absolute after:-bottom-1 after:left-0 after:h-px after:w-0 after:bg-current after:transition-all after:duration-300 hover:after:w-full;
+  }
+
+  .lang-switch-btn {
+    @apply rounded-full px-2.5 py-1 text-xs font-bold tracking-wide transition-colors duration-200;
+  }
+
+  /* Bilingual visibility: French is the shipped default; JS toggles html.lang-en.
+     Note: these three rules must stay equal-specificity (.class only) so the
+     later one in source order always wins — do not qualify them with an
+     element (e.g. "span.en-text"), which would out-specificity rule #1. */
+  .fr-text { display: inline; }
+  .en-text { display: none; }
+  html.lang-en .fr-text { display: none; }
+  html.lang-en .en-text { display: inline; }
+}
+
+@layer utilities {
+  .bg-grid {
+    background-image:
+      linear-gradient(to right, rgba(255,255,255,0.06) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255,255,255,0.06) 1px, transparent 1px);
+    background-size: 42px 42px;
+  }
+  .bg-grid-dark {
+    background-image:
+      linear-gradient(to right, rgba(8,18,38,0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(8,18,38,0.05) 1px, transparent 1px);
+    background-size: 42px 42px;
+  }
+  .text-gradient-gold {
+    background-image: linear-gradient(95deg, var(--color-gold-300), var(--color-gold-500) 60%, var(--color-gold-600));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .mask-fade-b {
+    -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+    mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+  }
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+}
+
+@keyframes blob {
+  0%, 100% { transform: translate(0px, 0px) scale(1); }
+  33% { transform: translate(30px, -40px) scale(1.08); }
+  66% { transform: translate(-25px, 25px) scale(0.95); }
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* Custom scrollbar for a more premium feel */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: theme(--color-primary-50, #EBF2FF); }
+::-webkit-scrollbar-thumb { background: var(--color-primary-300); border-radius: 999px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-primary-500); }

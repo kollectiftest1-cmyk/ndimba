@@ -1,0 +1,20 @@
+{
+  "name": "ndimb-sa",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Site vitrine bilingue NDIMB S.A — HTML, Tailwind CSS, GSAP.",
+  "scripts": {
+    "build:css": "tailwindcss -i ./assets/css/input.css -o ./css/style.css --minify",
+    "watch:css": "tailwindcss -i ./assets/css/input.css -o ./css/style.css --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.3.3",
+    "tailwindcss": "^4.3.3"
+  },
+  "dependencies": {
+    "gsap": "^3.15.0"
+  }
+}
